@@ -1,11 +1,10 @@
-import React from 'react'
 import axios from "axios";
 import  { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
         const [data, setData] = useState([]);
-
+        const navigate = useNavigate();
 
             useEffect(()=>{
                 const fetchData = async () =>{
@@ -17,7 +16,17 @@ const Home = () => {
                     }
                 }; 
                 fetchData();
-        },[]);
+        },[])
+
+        const handleDelete = (id) =>{
+            const confirm = window.confirm(" Woukd you like to Delete?");
+            if(confirm) {
+                axios.delete('http://localhost:3000/posts/' +id)
+                .then(res =>{
+                    location.reload();
+                }).catch(err => console.log(err));
+            }
+        }
     return(
       
             <div className="d-flex flex-column justify-content-center align-items-center bg-light vh-100">
@@ -43,9 +52,9 @@ const Home = () => {
                                     <td>{d.title}</td>
                                     <td>{d.author}</td>
                                     <td>
-                                        <button className="btn btn-sm btn-info me-2">Read</button>
-                                        <button className="btn btn-sm btn-primary me-2">Edit</button>
-                                        <button className="btn btn-sm btn-danger">Delete</button>
+                                        <Link to={`/read/${d.id}`} className="btn btn-sm btn-info me-2">Read</Link>
+                                        <Link to ={`/update/${d.id}`} className="btn btn-sm btn-primary me-2">Edit</Link>
+                                        <button onClick={e => handleDelete(d.id)} className="btn btn-sm btn-danger">Delete</button>
                                     </td>
                                 </tr>
                             ))
@@ -53,9 +62,9 @@ const Home = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
-      
+            </div>  
     )   
+
 }
 
 export default Home
