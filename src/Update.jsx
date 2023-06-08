@@ -3,27 +3,30 @@ import  { useEffect, useState } from "react";
 import axios from "axios";
 
 function Update() {
-    //const [data, setData] = useState([]);
+    // se usa para obtener el parametro id de la URL.
     const{id} = useParams();
-
+    const navigate = useNavigate();
+    // useState define el estado inicial de las entradas del formulario
+    // setValues actualiza el estado
     const [values, setValues] = useState({
       title: '',
       author: ''
-    })
-    const navigate = useNavigate();
+    });
+
     useEffect(()=>{
-        axios.get('http://localhost:3000/posts/' + id)
+        axios.get('http://localhost:3000/posts/'+id)
             .then(res => {
               setValues(res.data);
         })
         .catch(err => console.log(err));              
-    }, [id])
-
+    }, [])
+    // handleUpdate  maneja el envío del formulario
     const handleUpdate = (event) => {
-      event.prevendDefault();
+      event.preventDefault();
       axios.put('http://localhost:3000/posts/'+id, values)
             .then(res =>{
                 console.log(res);
+                // navega de regreso a la pagina e incio
                 navigate('/')
             })
             .catch(err => console.log(err));
@@ -40,10 +43,15 @@ function Update() {
             </div>
             <div className="mb-3">
                 <label htmlFor="author">Author:</label>
+                {/* los controladores de eventos onChange actualizan el estado mediante la función setValues ​​y la sintaxis de propagación (...valores). 
+                Esto asegura que el estado se actualice correctamente sin sobrescribir las otras propiedades del objeto de valores                 */}
                 <input type="text" name='author' className="form-control" placeholder="Enter Author"
                 value={values.author} onChange={e=> setValues({...values, author: e.target.value})}/>
             </div>
+                {/* Boton de envio para activar la actualizacion */}
               <button className="btn btn-success">Update</button>
+              {/* otra forma de hacer el boton Update :
+              <button onClick={handleUpdate} className="btn btn-success">Update</button> */}
               <Link to="/" className='btn btn-primary ms-3'>Back</Link>
             </form> 
       </div>

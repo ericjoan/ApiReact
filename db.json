@@ -1,34 +1,34 @@
 {
   "posts": [
     {
-      "id": 2,
-      "title": "vegueta",
-      "author": "Claudia"
-    },
-    {
-      "id": 3,
-      "title": "Pikoro",
-      "author": "Felipe"
-    },
-    {
       "id": 4,
-      "title": "misterpopo",
+      "title": "mister",
       "author": "Pepe"
     },
     {
       "title": "natahali",
-      "author": "nathaly",
+      "author": "nathaly3265",
       "id": 7
     },
     {
-      "title": "vicente",
-      "author": "vicente",
-      "id": 8
+      "title": "sebas",
+      "author": "sebas",
+      "id": 10
     },
     {
-      "title": "pepe",
-      "author": "pepe",
-      "id": 9
+      "title": "prueba1",
+      "author": "prueba1",
+      "id": 11
+    },
+    {
+      "title": "sebaspruebas",
+      "author": "gato",
+      "id": 12
+    },
+    {
+      "title": "camilo ",
+      "author": "patiño",
+      "id": 13
     }
   ],
   "comments": [],
