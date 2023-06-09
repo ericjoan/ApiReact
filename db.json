@@ -1,11 +1,6 @@
 {
   "posts": [
     {
-      "id": 4,
-      "title": "mister",
-      "author": "Pepe"
-    },
-    {
       "title": "natahali",
       "author": "nathaly3265",
       "id": 7
@@ -29,6 +24,11 @@
       "title": "camilo ",
       "author": "patiño",
       "id": 13
+    },
+    {
+      "title": "federico",
+      "author": "peña",
+      "id": 14
     }
   ],
   "comments": [],
