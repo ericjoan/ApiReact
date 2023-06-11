@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 
 function Create(){
     const [values, setValues] = useState({
@@ -9,12 +9,25 @@ function Create(){
         author: ''
     })
         const navigate = useNavigate();
+        //const Swal = require('sweetalert2')
+
+        const mostrarAlerta = () =>{
+
+            Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'The user has been created',
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+        }
 
         const handleSubmit = (event) => {
             event.preventDefault();
             axios.post('http://localhost:3000/posts', values)
             .then(res =>{
                 console.log(res);
+                mostrarAlerta()
                 navigate('/')
             })
             .catch(err => console.log(err));

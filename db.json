@@ -1,18 +1,13 @@
 {
   "posts": [
     {
-      "title": "natahali",
-      "author": "nathaly3265",
-      "id": 7
-    },
-    {
-      "title": "sebas",
-      "author": "sebas",
+      "title": "sebas45",
+      "author": "sebas3",
       "id": 10
     },
     {
       "title": "prueba1",
-      "author": "prueba1",
+      "author": "prueba2",
       "id": 11
     },
     {
@@ -29,6 +24,16 @@
       "title": "federico",
       "author": "peña",
       "id": 14
+    },
+    {
+      "title": "pinocho",
+      "author": "pinochito",
+      "id": 15
+    },
+    {
+      "title": "beto",
+      "author": "beto",
+      "id": 16
     }
   ],
   "comments": [],

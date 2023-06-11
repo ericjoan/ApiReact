@@ -1,6 +1,7 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 function Update() {
     // se usa para obtener el parametro id de la URL.
@@ -12,6 +13,17 @@ function Update() {
       title: '',
       author: ''
     });
+
+    const mostrarAlerta = () =>{
+
+        Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The user has been Updated',
+                showConfirmButton: false,
+                timer: 3000
+              })
+      }
 
     useEffect(()=>{
         axios.get('http://localhost:3000/posts/'+id)
@@ -26,6 +38,7 @@ function Update() {
       axios.put('http://localhost:3000/posts/'+id, values)
             .then(res =>{
                 console.log(res);
+                mostrarAlerta();
                 // navega de regreso a la pagina e incio
                 navigate('/')
             })
