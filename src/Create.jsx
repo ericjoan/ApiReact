@@ -21,13 +21,13 @@ function Create(){
                     icon: 'success',
                     title: 'The user has been created',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                   })
         }
 
         const handleSubmit = (event) => {
             event.preventDefault();
-            axios.post('http://52.188.151.223:8080/posts', values)
+            axios.post('https://my-json-server.typicode.com/ericjoan/jsonServer/posts', values)
             .then(res =>{
                 console.log(res);
                 mostrarAlerta();

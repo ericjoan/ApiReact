@@ -30,7 +30,7 @@ function Update() {
       }
 
     useEffect(()=>{
-        axios.get('http://52.188.151.223:8080/posts/'+ id)
+        axios.get('https://my-json-server.typicode.com/ericjoan/jsonServer/posts/'+ id)
             .then(res => {
               setValues(res.data);
         })
@@ -40,7 +40,7 @@ function Update() {
     
     const handleUpdate = (event) => {
       event.preventDefault();
-      axios.put('http://52.188.151.223:8080/posts/'+id, values)
+      axios.put('https://my-json-server.typicode.com/ericjoan/jsonServer/posts/'+id, values)
             .then(res =>{
                 console.log(res);
                 // navega de regreso a la pagina e incio

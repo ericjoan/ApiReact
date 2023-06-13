@@ -10,7 +10,7 @@ const Home = () => {
             useEffect(()=>{
                 const fetchData = async () =>{
                     try{
-                        const res = await axios.get('http://52.188.151.223:8080/posts');
+                        const res = await axios.get('https://my-json-server.typicode.com/ericjoan/jsonServer/posts');
                         setData(res.data);
                     }catch(error){
                         console.error(error);
@@ -33,7 +33,7 @@ const Home = () => {
         const handleDelete = (id) =>{
             const confirm = window.confirm(" Woukd you like to Delete?");
             if(confirm) {
-                axios.delete('http://52.188.151.223:8080/posts/' +id)
+                axios.delete('https://my-json-server.typicode.com/ericjoan/jsonServer/posts' +id)
                 .then(res =>{
                         mostrarAlerta();
                         setTimeout(() => {
