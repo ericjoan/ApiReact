@@ -10,8 +10,12 @@ function Update() {
     // useState define el estado inicial de las entradas del formulario
     // setValues actualiza el estado
     const [values, setValues] = useState({
-      title: '',
-      author: ''
+      name: '',
+      lastName: '',
+      dni: '',
+      age: '',
+      rol: ''
+      
     });
 
     const mostrarAlerta = () =>{
@@ -21,26 +25,30 @@ function Update() {
                 icon: 'success',
                 title: 'The user has been Updated',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2000
               })
       }
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/posts/'+id)
+        axios.get('http://localhost:3000/posts/'+ id)
             .then(res => {
               setValues(res.data);
         })
         .catch(err => console.log(err));              
     }, [])
     // handleUpdate  maneja el envío del formulario
+    
     const handleUpdate = (event) => {
       event.preventDefault();
       axios.put('http://localhost:3000/posts/'+id, values)
             .then(res =>{
                 console.log(res);
-                mostrarAlerta();
                 // navega de regreso a la pagina e incio
-                navigate('/')
+                mostrarAlerta();
+                setTimeout(() => {
+                  navigate('/')
+                }, "3000");
+                
             })
             .catch(err => console.log(err));
     }
@@ -50,21 +58,37 @@ function Update() {
         <h1>Update a User</h1>
         <form onSubmit={handleUpdate}>
             <div className="mb-2">
-                <label htmlFor="title">Title:</label>
-                <input type="text" name='title' className="form-control" placeholder="Enter Title"
-                value={values.title} onChange={e=> setValues({...values, title: e.target.value})}/>
+                <label htmlFor="name">Name:</label>
+                <input type="text" name='name' className="form-control" placeholder="Enter Name"
+                value={values.name} onChange={e=> setValues({...values, name: e.target.value})}/>
             </div>
             <div className="mb-3">
-                <label htmlFor="author">Author:</label>
+                <label htmlFor="lastName">LastName:</label>
                 {/* los controladores de eventos onChange actualizan el estado mediante la función setValues ​​y la sintaxis de propagación (...valores). 
                 Esto asegura que el estado se actualice correctamente sin sobrescribir las otras propiedades del objeto de valores                 */}
-                <input type="text" name='author' className="form-control" placeholder="Enter Author"
-                value={values.author} onChange={e=> setValues({...values, author: e.target.value})}/>
+                <input type="text" name='lastName' className="form-control" placeholder="Enter LastName"
+                value={values.lastName} onChange={e=> setValues({...values, lastName: e.target.value})}/>
+            </div>
+            <div className="mb-2">
+                <label htmlFor="title">DNI:</label>
+                <input type="text" name='dni' className="form-control" placeholder="Enter DNI"
+                value={values.dni} onChange={e=> setValues({...values, dni: e.target.value})}/>
+            </div>
+            <div className="mb-2">
+                <label htmlFor="title">Age:</label>
+                <input type="text" name='age' className="form-control" placeholder="Enter Age"
+                value={values.age} onChange={e=> setValues({...values, age: e.target.value})}/>
+            </div>
+            <div className="mb-2">
+                <label htmlFor="title">Rol:</label>
+                <input type="text" name='rol' className="form-control" placeholder="Enter Rol"
+                value={values.rol} onChange={e=> setValues({...values, rol: e.target.value})}/>
             </div>
                 {/* Boton de envio para activar la actualizacion */}
-              <button className="btn btn-success">Update</button>
+              <button className="btn btn-success" >Update</button>
               {/* otra forma de hacer el boton Update :
               <button onClick={handleUpdate} className="btn btn-success">Update</button> */}
+              
               <Link to="/" className='btn btn-primary ms-3'>Back</Link>
             </form> 
       </div>

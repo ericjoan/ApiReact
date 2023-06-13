@@ -1,6 +1,7 @@
 import axios from "axios";
 import  { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const Home = () => {
         const [data, setData] = useState([]);
@@ -18,12 +19,27 @@ const Home = () => {
                 fetchData();
         },[])
 
+        const mostrarAlerta = () =>{
+
+            Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'The user has been Updated',
+                    showConfirmButton: false,
+                    timer: 2000
+                  })
+          }
+
         const handleDelete = (id) =>{
             const confirm = window.confirm(" Woukd you like to Delete?");
             if(confirm) {
                 axios.delete('http://localhost:3000/posts/' +id)
                 .then(res =>{
-                    location.reload();
+                        mostrarAlerta();
+                        setTimeout(() => {
+                            location.reload();
+                        }, "3000");
+                    
                 }).catch(err => console.log(err));
             }
         }
@@ -39,8 +55,11 @@ const Home = () => {
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>title</th>
-                            <th>author</th>
+                            <th>name</th>
+                            <th>lastName</th>
+                            <th>dni</th>
+                            <th>age</th>
+                            <th>rol</th>
                             <th>action</th>
                         </tr>
                     </thead>
@@ -49,8 +68,11 @@ const Home = () => {
                             data.map((d, i) =>(
                                 <tr key={i}>
                                     <td>{d.id}</td>
-                                    <td>{d.title}</td>
-                                    <td>{d.author}</td>
+                                    <td>{d.name}</td>
+                                    <td>{d.lastName}</td>
+                                    <td>{d.dni}</td>
+                                    <td>{d.age}</td>
+                                    <td>{d.rol}</td>
                                     <td>
                                         <Link to={`/read/${d.id}`} className="btn btn-sm btn-info me-2">Read</Link>
                                         <Link to ={`/update/${d.id}`} className="btn btn-sm btn-primary me-2">Edit</Link>
