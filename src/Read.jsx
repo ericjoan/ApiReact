@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
     const [data, setData] = useState([]);
     const{id} = useParams();
     useEffect(() => {
-        axios.get('http://localhost:3000/posts/' +id)
+        axios.get('http://52.188.151.223:8080/posts/' +id)
           .then(res => setData(res.data))
           .catch(err => console.log(err));              
     }, [])

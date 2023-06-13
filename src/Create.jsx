@@ -27,7 +27,7 @@ function Create(){
 
         const handleSubmit = (event) => {
             event.preventDefault();
-            axios.post('http://localhost:3000/posts', values)
+            axios.post('http://52.188.151.223:8080/posts', values)
             .then(res =>{
                 console.log(res);
                 mostrarAlerta();
